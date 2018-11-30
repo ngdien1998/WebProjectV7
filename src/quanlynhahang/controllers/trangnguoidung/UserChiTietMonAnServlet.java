@@ -27,12 +27,10 @@ public class UserChiTietMonAnServlet extends HttpServlet {
 
             ArrayList<MonAn> listMonAn = userTrangChuService.getBonMonAnMoiNhat();
             request.setAttribute("listMonAn", listMonAn);
-        } catch (SQLException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/chi-tiet-mon-an.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/chi-tiet-mon-an.jsp");
         dispatcher.forward(request, response);
     }
 }

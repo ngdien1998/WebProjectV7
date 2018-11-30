@@ -1,5 +1,6 @@
 package quanlynhahang.controllers.trangnguoidung.giohang;
 
+import quanlynhahang.common.AuthorizePermission;
 import quanlynhahang.models.viewmodels.GioHang;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,11 @@ public class ThemVaoGioHangServlet extends HttpServlet {
         try {
             request.setCharacterEncoding("utf-8");
             response.setContentType("text/html;charset=UTF-8");
+
+            if (!AuthorizePermission.checkLogined(request)) {
+                response.getWriter().println("Bạn không được phép đặt nón. Vui lòng <a href='/dang-nhap'>Đăng nhập</a> để thực hiện chức năng này!");
+                return;
+            }
 
             int idMonAn = Integer.parseInt(request.getParameter("txtIdMon"));
             int soLuong = Integer.parseInt(request.getParameter("txtSoLuong"));
